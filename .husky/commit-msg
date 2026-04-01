@@ -1,0 +1,2 @@
+# This hook validates commit message if it follows conventional commits standard.
+node ./git-hook-conventional-commit-message.js
