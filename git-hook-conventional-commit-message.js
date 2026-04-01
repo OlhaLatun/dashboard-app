@@ -5,7 +5,7 @@ import chalk from 'chalk';
 import child_process from 'node:child_process';
 
 const conventionalCommitMessageRegExp =
-  /^(build|chore|ci|docs|feat|fix|perf|refactor|revert|style|test):([\w ])+([\s\S]*)/i;
+  /^(build|chore|ci|docs|feat|fix|perf|refactor|revert|style|test)(\(([\w\-,.]+)\))?(!)?: ([\w ])+([\s\S]*)/i;
 
 function getProjectRootDir() {
   return child_process
@@ -28,15 +28,20 @@ function getCommitMessage() {
   return fs.readFileSync(commitMessageFile, { encoding: 'utf-8' });
 }
 
-function getMessageScope(message) {
-  const match = message.match(conventionalCommitMessageRegExp);
+function validateMessageStructure(message) {
+  const isConventionalCommit = new RegExp(conventionalCommitMessageRegExp).test(message);
 
-  if (match && match[3]) {
-    return match[3];
+  if (!isConventionalCommit) {
+    return !!message.startsWith('Merge ');
   }
 
-  return '';
+  return true;
 }
+
+/**
+ * Returns list of buildable libs that should be added to the scope.
+ *
+ */
 
 let exitCode = 0;
 const message = getCommitMessage();
@@ -45,29 +50,35 @@ if (typeof message !== 'string') {
   console.log('Could not open commit message file.');
   exitCode = 1;
 } else {
-  const scope = getMessageScope(message);
+  if (!validateMessageStructure(message)) {
+    console.log(
+      chalk.red(chalk.bold('Cannot commit:')),
+      chalk.bold('the commit message does not comply with conventional commits specification.'),
+    );
+    console.log('Commit message should have next structure:');
+    console.log(chalk.italic('<type>: <description>'));
+    console.log(chalk.italic('[optional body]'));
+    console.log(chalk.italic('[optional footer(s)]'));
+    console.log(chalk.bold('Example:'), chalk.italic('feat: add feature module'));
 
-  console.log(
-    chalk.red(chalk.bold('Cannot commit:')),
-    chalk.bold('the commit message does not comply with conventional commits specification.'),
-  );
-  console.log('Commit message should have next structure:');
-  console.log(chalk.italic('<type>(<ticket number>,<project name>): <description>'));
-  console.log(chalk.italic('[optional body]'));
-  console.log(chalk.italic('[optional footer(s)]'));
-  console.log(chalk.bold('Example:'), chalk.italic('feat: add feature module'));
+    console.log(
+      chalk.bold('Available types:'),
+      'build, chore, ci, docs, feat, fix, perf, refactor, revert, style, test.',
+    );
 
-  console.log(
-    chalk.bold('Available types:'),
-    'build, chore, ci, docs, feat, fix, perf, refactor, revert, style, test.',
-  );
+    console.log('');
 
-  if (scope.includes(' ')) {
-    console.log(chalk.bold('No comma in the scope!'));
+    exitCode = 1;
+  } else {
+    // Write updated message back to file
+    const commitMessageFile = `${projectRootDir}/.git/COMMIT_EDITMSG`;
+
+    try {
+      fs.writeFileSync(commitMessageFile, message, { encoding: 'utf-8' });
+    } catch (err) {
+      console.log(`\nCould not write to commit message file.`, skipMsgErr);
+    }
   }
-  console.log('');
-
-  exitCode = 1;
 }
 
 if (exitCode) {
