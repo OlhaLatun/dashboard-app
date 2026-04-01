@@ -1,0 +1,12 @@
+{
+  "printWidth": 100,
+  "trailingComma": "all",
+  "tabWidth": 2,
+  "semi": true,
+  "singleQuote": true,
+  "importOrder": [],
+  "importOrderSeparation": true,
+  "importOrderSortSpecifiers": true,
+  "plugins": ["prettier"],
+  "importOrderParserPlugins": ["decorators-legacy", "typescript"]
+}
