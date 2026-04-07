@@ -36,7 +36,6 @@ export default defineConfig([
       parser: tsParser,
       ecmaVersion: 2020,
       sourceType: 'module',
-
       parserOptions: {
         ecmaFeatures: {
           jsx: true,
@@ -56,12 +55,10 @@ export default defineConfig([
       'react/prop-types': 'off',
       'react/react-in-jsx-scope': 'off',
     },
-    overrides: [
-      {
-        files: ['+types/**/*.ts'],
-        excludedFiles: ['*'],
-        rules: {},
-      },
-    ],
+  },
+
+  {
+    files: ['+types/**/*.ts'],
+    rules: {},
   },
 ]);
