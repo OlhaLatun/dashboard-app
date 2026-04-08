@@ -8,19 +8,55 @@
     'Segoe UI Symbol', 'Noto Color Emoji';
 }
 
+:root {
+  /* Font sizes */
+  --font-size-sm: 12px;
+  --font-size-md: 14px;
+  --font-size-lg: 16px;
+  --font-size-xl: 20px;
+
+  /* Font weights */
+  --font-weight-regular: 400;
+  --font-weight-medium: 500;
+  --font-weight-semibold: 600;
+  --font-weight-bold: 700;
+
+  /* Border radius */
+  --border-radius-sm: 4px;
+  --border-radius-md: 5px;
+  --border-radius-lg: 6px;
+
+  /* Box shadow */
+  --box-shadow-color: rgba(0, 0, 0, 0.05);
+  --box-shadow-sm: 0px 2px 4px var(--box-shadow-color);
+  --box-shadow-md: 0px 2px 8px var(--box-shadow-color);
+  --box-shadow-lg: 0px 2px 8px var(--box-shadow-color);
+
+  --color-primary: #4f46e5;
+  --color-text-primary: #fff;
+
+  --bg-color-primary: #fff;
+  --bg-color-hover: #f9fafb;
+}
+
 html,
 body {
   height: 100%;
   @apply bg-white dark:bg-gray-950;
 
-  .container {
+  .app-container {
     min-height: 100vh;
 
     .navbar-main {
       width: 100%;
+      height: 64px;
+      padding: 0 24px;
+
+      display: flex;
+      justify-content: flex-end;
     }
 
-    .container-inner {
+    .app-container-inner {
       display: flex;
 
       .sidebar {
@@ -32,11 +68,42 @@ body {
         flex-shrink: 0;
       }
 
-      .content {
+      .app-content {
         flex: 1;
         padding: 20px;
         background-color: #f8f9fa;
         overflow-y: auto;
+      }
+    }
+  }
+
+  .app-dropdown {
+    padding: 6px;
+    border-radius: var(--border-radius-lg);
+    transition: ease-in 0.3s;
+
+    &:hover {
+      background-color: var(--bg-color-hover);
+    }
+  }
+
+  .app-dropdown-menu {
+    width: 200px;
+    margin: 8px 0;
+    padding: 8px 0;
+    background-color: var(--bg-color-primary);
+    box-shadow: var(--box-shadow-sm);
+    border-radius: var(--border-radius-lg);
+
+    .app-dropdown-menu-item {
+      padding: 5px 10px;
+      display: flex;
+      align-items: center;
+      justify-content: start;
+      transition: ease-in 0.3s;
+
+      &:hover {
+        background-color: var(--bg-color-hover);
       }
     }
   }

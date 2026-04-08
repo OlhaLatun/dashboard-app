@@ -3,6 +3,7 @@ import { Sidebar } from '~/components/sidebar/sidebar';
 import { Dashboard } from '~/pages/dashboard/dashboard';
 import type { Route } from './+types/app';
 
+// eslint-disable-next-line no-empty-pattern
 export function meta({}: Route.MetaArgs) {
   return [
     { title: 'Dashboard App' },
@@ -12,11 +13,11 @@ export function meta({}: Route.MetaArgs) {
 
 export default function App() {
   return (
-    <div className="container flex ">
+    <div className="app-container">
       <NavbarMain />
-      <div className="container-inner flex">
+      <div className="app-container-inner flex">
         <Sidebar />
-        <div className="content">
+        <div className="app-content">
           <Dashboard />
         </div>
       </div>
