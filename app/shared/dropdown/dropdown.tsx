@@ -4,9 +4,10 @@ import { ChevronDown } from 'lucide-react';
 type DropdownProps = {
   template: React.ReactNode;
   menuItems: string[];
+  isIcon?: boolean;
 };
 
-export function Dropdown({ template, menuItems }: Readonly<DropdownProps>) {
+export function Dropdown({ template, menuItems, isIcon }: Readonly<DropdownProps>) {
   const dropdownRef = useRef<HTMLDivElement>(null);
   const [isOpen, setIsOpen] = useState(false);
   const toggle = () => setIsOpen((open) => !open);
@@ -30,7 +31,7 @@ export function Dropdown({ template, menuItems }: Readonly<DropdownProps>) {
         className="flex self-center items-center justify-center gap-2"
       >
         {template}
-        <ChevronDown size={20} strokeWidth={1} />
+        {!isIcon && <ChevronDown size={20} strokeWidth={1} />}
       </button>
 
       {isOpen && (
