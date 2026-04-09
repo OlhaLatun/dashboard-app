@@ -13,13 +13,11 @@ export function meta({}: Route.MetaArgs) {
 
 export default function App() {
   return (
-    <div className="app-container">
-      <NavbarMain />
-      <div className="app-container-inner flex">
-        <Sidebar />
-        <div className="app-content">
-          <Dashboard />
-        </div>
+    <div className="app-container flex">
+      <Sidebar />
+      <div className="app-content">
+        <NavbarMain />
+        <Dashboard />
       </div>
     </div>
   );
