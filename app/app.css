@@ -74,6 +74,7 @@ body {
         padding: 17px;
         box-shadow: var(--box-shadow-sm);
         border-right: 1px solid var(--box-shadow-color);
+        white-space: nowrap;
 
         .app-sidebar-toggle {
           padding: 5px;
@@ -104,6 +105,10 @@ body {
     .app-sidebar-navigation-item:active {
       color: var(--color-text-primary);
       background-color: var(--color-primary);
+    }
+
+    .app-sidebar-navigation-item svg {
+      flex-shrink: 0;
     }
 
     .app-content {

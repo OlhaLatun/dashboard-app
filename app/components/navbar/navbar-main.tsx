@@ -9,12 +9,12 @@ export function NavbarMain() {
   return (
     <nav className="app-navbar-main">
       <SearchInput />
-      <Dropdown
-        template={notifications.length ? <BellDot /> : <Bell />}
-        menuItems={['notification1', 'notification2']}
-        isIcon={true}
-      />
-      <Dropdown template={<UserProfileMenu />} menuItems={['one', 'two', 'three']} />
+      <Dropdown menuItems={['notification1', 'notification2']} isIcon={true}>
+        {notifications.length ? <BellDot /> : <Bell />}
+      </Dropdown>
+      <Dropdown menuItems={['one', 'two', 'three']}>
+        <UserProfileMenu />
+      </Dropdown>
     </nav>
   );
 }
