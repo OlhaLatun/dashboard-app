@@ -7,10 +7,10 @@ import {
   Settings,
   Users,
 } from 'lucide-react';
-import { useState } from 'react';
+import { useState, type JSX } from 'react';
 import classNames from 'classnames';
 
-export function Sidebar() {
+export function Sidebar(): JSX.Element {
   const [isCollapsed, setIsCollapsed] = useState(false);
   const navItems = [
     {

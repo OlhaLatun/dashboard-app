@@ -1,13 +1,13 @@
-import React, { useEffect, useRef, useState } from 'react';
+import { type ReactNode, type JSX, useEffect, useRef, useState } from 'react';
 import { ChevronDown } from 'lucide-react';
 
 type DropdownProps = {
-  template: React.ReactNode;
   menuItems: string[];
+  children: ReactNode;
   isIcon?: boolean;
 };
 
-export function Dropdown({ template, menuItems, isIcon }: Readonly<DropdownProps>) {
+export function Dropdown({ menuItems, isIcon, children }: Readonly<DropdownProps>): JSX.Element {
   const dropdownRef = useRef<HTMLDivElement>(null);
   const [isOpen, setIsOpen] = useState(false);
   const toggle = () => setIsOpen((open) => !open);
@@ -30,7 +30,7 @@ export function Dropdown({ template, menuItems, isIcon }: Readonly<DropdownProps
         onClick={toggle}
         className="flex self-center items-center justify-center gap-2"
       >
-        {template}
+        {children}
         {!isIcon && <ChevronDown size={20} strokeWidth={1} />}
       </button>
 
