@@ -1,6 +1,7 @@
+import { Navigate, Outlet } from 'react-router';
+
 import { NavbarMain } from '~/components/navbar/navbar-main';
 import { Sidebar } from '~/components/sidebar/sidebar';
-import { Dashboard } from '~/pages/dashboard/dashboard';
 
 export function meta() {
   return [
@@ -15,7 +16,8 @@ export default function App() {
       <Sidebar />
       <div className="app-content">
         <NavbarMain />
-        <Dashboard />
+        <Navigate to="./dashboard" replace />
+        <Outlet />
       </div>
     </div>
   );

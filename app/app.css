@@ -102,9 +102,14 @@ body {
       background-color: var(--bg-color-hover);
     }
 
-    .app-sidebar-navigation-item:active {
+    .app-sidebar-navigation-item--active {
       color: var(--color-text-primary);
+      font-weight: bold;
       background-color: var(--color-primary);
+    }
+
+    .app-sidebar-navigation-item--active:hover {
+      color: var(--color-text-secondary);
     }
 
     .app-sidebar-navigation-item svg {

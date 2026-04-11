@@ -8,6 +8,7 @@ import {
   Users,
 } from 'lucide-react';
 import { useState, type JSX } from 'react';
+import { NavLink } from 'react-router-dom';
 import classNames from 'classnames';
 
 export function Sidebar(): JSX.Element {
@@ -17,21 +18,25 @@ export function Sidebar(): JSX.Element {
       id: 1,
       label: 'Dashboard',
       icon: <LayoutDashboard />,
+      link: '/dashboard',
     },
     {
       id: 2,
       label: 'Users',
       icon: <Users />,
+      link: '/users',
     },
     {
       id: 3,
       label: 'Analytics',
       icon: <ChartColumn />,
+      link: '/analytics',
     },
     {
       id: 4,
       label: 'Settings',
       icon: <Settings />,
+      link: '/settings',
     },
   ];
 
@@ -64,11 +69,20 @@ export function Sidebar(): JSX.Element {
 
       <div className="app-sidebar-navigation">
         <ul>
-          {navItems.map(({ id, label, icon }) => (
-            <li key={id} className="flex items-center gap-1 p-2 app-sidebar-navigation-item">
+          {navItems.map(({ id, label, icon, link }) => (
+            <NavLink
+              to={link}
+              key={id}
+              className={({ isActive }) =>
+                classNames(
+                  'flex items-center gap-1 p-2 app-sidebar-navigation-item',
+                  isActive && 'app-sidebar-navigation-item--active',
+                )
+              }
+            >
               {icon}
               {!isCollapsed && label}
-            </li>
+            </NavLink>
           ))}
         </ul>
       </div>
