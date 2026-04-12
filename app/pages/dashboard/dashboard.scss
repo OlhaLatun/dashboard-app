@@ -1,0 +1,18 @@
+.app-dashboard-heading {
+  margin-bottom: 20px;
+
+  h1 {
+    font-size: 24px;
+    font-weight: 600;
+  }
+
+  span {
+    color: var(--color-text-label);
+  }
+}
+
+.app-dashboard-cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 16px;
+}
