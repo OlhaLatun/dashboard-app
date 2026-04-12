@@ -2,6 +2,8 @@ import { type JSX } from 'react';
 import { ANALYTICS_SUMMARY_CARDS_MOCK } from 'app/mocks/analytics-summary-cards';
 import { AnalyticsSummaryCard } from '~/shared/components/analytics-summary-card/analytics-summary-card';
 import './dashboard.scss';
+import { LinearChart } from '~/components/linear-chart/linear-chart';
+import { BarlikeChart } from '~/components/bar-chart/bar-chart';
 
 export default function Dashboard(): JSX.Element {
   return (
@@ -14,6 +16,10 @@ export default function Dashboard(): JSX.Element {
         {ANALYTICS_SUMMARY_CARDS_MOCK.map((card) => (
           <AnalyticsSummaryCard card={card} key={card.id} />
         ))}
+      </div>
+      <div className="app-dashboard-charts">
+        <LinearChart title="Revenue Over Time" description="Monthly revenue comparison" />
+        <BarlikeChart title="WeeklyActivity" description="User activity by day" />
       </div>
     </div>
   );

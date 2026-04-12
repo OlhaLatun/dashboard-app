@@ -1,0 +1,20 @@
+.app-chart-container {
+  padding: 20px 40px;
+  box-shadow: var(--box-shadow-lg);
+  border: 1px solid var(--border-color);
+  border-radius: var(--border-radius-lg);
+  background-color: var(--bg-color-primary);
+
+  .app-chart-title {
+    margin-bottom: 20px;
+
+    h2 {
+      font-size: 24px;
+      font-weight: 500;
+    }
+
+    span {
+      color: var(--color-text-label);
+    }
+  }
+}
