@@ -1,8 +1,8 @@
 import { Bell, BellDot } from 'lucide-react';
 
 import { UserProfileMenu } from '~/components/user-profile-menu/user-profile-menu';
-import { Dropdown } from '~/shared/dropdown/dropdown';
-import { SearchInput } from '~/shared/search/search';
+import { Dropdown } from '~/shared/components/dropdown/dropdown';
+import { SearchInput } from '~/shared/components/search/search';
 
 export function NavbarMain() {
   const notifications = ['notification1', 'notification2'];

@@ -1,0 +1,40 @@
+.app-analytics-card {
+  display: flex;
+  gap: 2rem;
+  justify-content: space-between;
+  padding: 20px;
+  background-color: var(--bg-color-primary);
+  border-radius: var(--border-radius-lg);
+  border: 1px solid var(--border-color);
+  box-shadow: var(--box-shadow-lg);
+
+  &-info {
+    &-label {
+      font-size: 12px;
+      font-weight: 500;
+      color: var(--color-text-label);
+    }
+
+    &-value {
+      font-size: 32px;
+      font-weight: 500;
+    }
+
+    .success {
+      color: var(--color-text-success);
+    }
+
+    .error {
+      color: var(--color-text-error);
+    }
+  }
+
+  .icon {
+    align-self: start;
+    padding: 10px 14px;
+    font-size: 20px;
+    color: var(--color-primary);
+    border-radius: var(--border-radius-lg);
+    background-color: var(--bg-color-secondary);
+  }
+}

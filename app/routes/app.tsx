@@ -16,8 +16,10 @@ export default function App() {
       <Sidebar />
       <div className="app-content">
         <NavbarMain />
-        <Navigate to="./dashboard" replace />
-        <Outlet />
+        <div className="app-content-container">
+          <Navigate to="./dashboard" replace />
+          <Outlet />
+        </div>
       </div>
     </div>
   );
