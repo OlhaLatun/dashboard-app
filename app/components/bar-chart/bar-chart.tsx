@@ -1,15 +1,12 @@
 import { type JSX } from 'react';
-import { CartesianGrid, Line, LineChart, Tooltip, XAxis, YAxis } from 'recharts';
-import './chart.scss';
-import { linearChartData as data } from '~/mocks/charts';
+import '../linear-chart/chart.scss';
+import { barChartData as data } from '~/mocks/charts';
+import { Bar, BarChart, CartesianGrid, Tooltip, XAxis, YAxis } from 'recharts';
 
-export function LinearChart({
+export function BarlikeChart({
   title,
   description,
-}: Readonly<{
-  title: string;
-  description: string;
-}>): JSX.Element {
+}: Readonly<{ title: string; description: string }>): JSX.Element {
   return (
     <div className="app-chart-container">
       <div className="app-chart-title">
@@ -17,14 +14,7 @@ export function LinearChart({
         <span> {description}</span>
       </div>
 
-      <LineChart
-        style={{
-          width: '100%',
-          aspectRatio: 1.618,
-        }}
-        data={data}
-        responsive
-      >
+      <BarChart style={{ width: '100%', aspectRatio: 1.618 }} responsive data={data}>
         <CartesianGrid strokeDasharray="3 3" />
         <XAxis dataKey="month" />
         <YAxis domain={[0, 'dataMax + 6000']} />
@@ -39,16 +29,13 @@ export function LinearChart({
             boxShadow: 'var(--box-shadow-lg)',
           }}
         />
-        <Line
-          type="monotone"
+        <Bar
           dataKey="value"
-          stroke="var(--color-primary)"
-          dot={{
-            fill: 'var(--color-primary)',
-          }}
-          activeDot={{ r: 8, stroke: 'white' }}
+          fill="var(--color-primary)"
+          activeBar={{ fill: 'var(--color-primary)' }}
+          radius={[10, 10, 0, 0]}
         />
-      </LineChart>
+      </BarChart>
     </div>
   );
 }
