@@ -40,10 +40,12 @@
   --color-text-label: #717171;
   --color-text-success: #0ba50b;
   --color-text-error: #ed1515;
+  --color-text-warning: #ffad10;
 
   --bg-color-primary: #fff;
   --bg-color-secondary: #f8f9fa;
   --bg-color-hover: #f9fafb;
+  --bg-color-th-hover: #eaeaea;
 }
 
 html,

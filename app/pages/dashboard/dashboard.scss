@@ -11,15 +11,21 @@
   }
 }
 
-.app-dashboard-cards {
-  margin-bottom: 20px;
+.app-dashboard-cards,
+.app-dashboard-charts {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
   gap: 16px;
 }
 
+.app-dashboard-cards {
+  margin-bottom: 20px;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+}
+
 .app-dashboard-charts {
-  display: grid;
   grid-template-columns: repeat(auto-fit, minmax(500px, 1fr));
-  gap: 16px;
+}
+
+.app-dashboard-table {
+  margin: 20px 0;
 }

@@ -1,0 +1,72 @@
+.app-table-container {
+  width: 100%;
+  display: grid;
+  color: var(--color-text-label);
+  border-radius: var(--border-radius-lg);
+  box-shadow: var(--box-shadow-lg);
+  background-color: var(--bg-color-primary);
+
+  caption {
+    text-align: left;
+    padding: 10px 20px;
+    line-height: 32px;
+    color: var(--color-text-secondary);
+
+    h3 {
+      font-size: 20px;
+      font-weight: 500;
+    }
+  }
+
+  .app-table-header {
+    background-color: var(--bg-color-secondary);
+    text-align: left;
+
+    th {
+      font-weight: 400;
+      font-size: 14px;
+
+      &:hover {
+        background-color: var(--bg-color-th-hover);
+      }
+    }
+  }
+
+  tr {
+    border-bottom: 1px solid var(--border-color);
+
+    &:first-child {
+      border-top: 1px solid var(--border-color);
+    }
+
+    &:hover td {
+      background-color: var(--bg-color-th-hover);
+    }
+  }
+
+  th,
+  td {
+    padding: 20px;
+  }
+
+  .app-table-status-label {
+    padding: 4px 12px;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: 500;
+    color: var(--color-text-primary);
+    background-color: var(--color-text-secondary);
+
+    &.success {
+      background-color: var(--color-text-success);
+    }
+
+    &.error {
+      background-color: var(--color-text-error);
+    }
+
+    &.warning {
+      background-color: var(--color-text-warning);
+    }
+  }
+}
