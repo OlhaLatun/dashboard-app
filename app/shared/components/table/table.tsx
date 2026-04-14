@@ -1,16 +1,20 @@
 import { type JSX, type ReactNode, useEffect, useState } from 'react';
-import { ArrowDown, ArrowUp } from 'lucide-react';
+import { ArrowDown, ArrowUp, ChevronLeft, ChevronRight } from 'lucide-react';
 import type { Column } from '~/shared/interfaces/table.interfaces';
 import './table.scss';
 
 export function Table<T>({
   columns,
   data,
+  pagination = false,
+  itemsPerPage = 0,
   caption = '',
   captionDescription = '',
 }: Readonly<{
   columns: Column<T>[];
   data: T[];
+  pagination?: boolean;
+  itemsPerPage?: number;
   caption?: string;
   captionDescription?: string;
 }>): JSX.Element {
@@ -19,10 +23,23 @@ export function Table<T>({
     key: keyof T;
     order: 1 | -1;
   } | null>(null);
+  const [paginatorConfig, setPaginatorConfig] = useState<{
+    currentPage: number;
+    start: number;
+    end: number;
+  }>({
+    currentPage: 1,
+    start: 0,
+    end: itemsPerPage,
+  });
 
   useEffect(() => {
-    setTableData(data);
-  }, [data]);
+    if (pagination) {
+      setTableData(data.slice(paginatorConfig.start, paginatorConfig.end));
+    } else {
+      setTableData(data);
+    }
+  }, [data, paginatorConfig]);
 
   const handleSort = (col: Column<T>) => {
     if (!col.sortable) return;
@@ -50,6 +67,25 @@ export function Table<T>({
 
     setTableData(sorted);
     setSortConfig({ key: col.accessor, order });
+  };
+
+  const handlePageChange = (goTo: 'next' | 'prev') => {
+    let start: number, end: number, currentPage: number;
+    if (goTo === 'next') {
+      currentPage = paginatorConfig.currentPage + 1;
+      end = currentPage * itemsPerPage;
+      start = end - itemsPerPage;
+    } else {
+      currentPage = paginatorConfig.currentPage - 1;
+      start = currentPage * itemsPerPage - itemsPerPage;
+      end = currentPage * itemsPerPage;
+    }
+
+    setPaginatorConfig({
+      currentPage,
+      start,
+      end,
+    });
   };
 
   return (
@@ -86,6 +122,36 @@ export function Table<T>({
             </tr>
           ))}
         </tbody>
+        {pagination && (
+          <tfoot>
+            <tr>
+              <td scope="row" colSpan={columns.length}>
+                <div className="flex justify-between">
+                  <span> Items per page: {itemsPerPage}</span>
+                  <div className="flex items-center gap-8">
+                    <button
+                      className="app-table-pagination-button"
+                      onClick={() => handlePageChange('prev')}
+                      disabled={paginatorConfig.currentPage === 1}
+                    >
+                      <ChevronLeft /> Prev
+                    </button>
+                    <span> {paginatorConfig.currentPage} </span>
+                    <button
+                      className="app-table-pagination-button"
+                      onClick={() => handlePageChange('next')}
+                      disabled={
+                        paginatorConfig.currentPage === Math.ceil(data.length / itemsPerPage)
+                      }
+                    >
+                      Next <ChevronRight />
+                    </button>
+                  </div>
+                </div>
+              </td>
+            </tr>
+          </tfoot>
+        )}
       </table>
     </div>
   );

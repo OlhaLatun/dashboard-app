@@ -32,7 +32,7 @@
     }
   }
 
-  tr {
+  tr:not(tfoot tr) {
     border-bottom: 1px solid var(--border-color);
 
     &:first-child {
@@ -67,6 +67,22 @@
 
     &.warning {
       background-color: var(--color-text-warning);
+    }
+  }
+
+  .app-table-pagination-button {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    border-radius: var(--border-radius-lg);
+    padding: 8px;
+
+    &:disabled {
+      color: var(--color-text-disabled);
+    }
+
+    &:hover {
+      background-color: var(--bg-color-hover);
     }
   }
 }

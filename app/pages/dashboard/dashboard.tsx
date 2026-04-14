@@ -51,10 +51,12 @@ export default function Dashboard(): JSX.Element {
       </div>
       <div className="app-dashboard-table">
         <Table
-          columns={columns}
-          data={tableDataMock.map((item) => new DashboardTableRow(item))}
           caption="Recent Activity"
           captionDescription="Latest user actions and events"
+          columns={columns}
+          data={tableDataMock.map((item) => new DashboardTableRow(item))}
+          pagination={true}
+          itemsPerPage={5}
         />
       </div>
     </div>
