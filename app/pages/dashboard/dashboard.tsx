@@ -14,6 +14,7 @@ export default function Dashboard(): JSX.Element {
     {
       header: 'User',
       accessor: 'user',
+      sortable: true,
     },
     {
       header: 'Action',
@@ -22,6 +23,7 @@ export default function Dashboard(): JSX.Element {
     {
       header: 'Time',
       accessor: 'time',
+      sortable: true,
       render: (data) => <span>{data.getFormattedTime()}</span>,
     },
     {
